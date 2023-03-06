@@ -22,7 +22,7 @@ server = app.server
 
 # ============ Ingestao e manupulação de dados =========== 
 
-df_data = pd.read_csv(r"supermarket_sales.csv")
+df_data = pd.read_csv("supermarket_sales.csv")
 df_data["Date"] = pd.to_datetime(df_data["Date"])
 
 df_data["City"].value_counts().index

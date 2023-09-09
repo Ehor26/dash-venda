@@ -6,17 +6,9 @@ import pandas as pd
 import numpy as np
 
 import plotly.express as px
-import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
-import dash_bootstrap_templates as dbt
 
-
-from dash_bootstrap_templates import load_figure_template
-
-#load_figure_template("minty")
-
-app = dash.Dash(__name__, external_stylesheets=[dbt.themes.MINTY])
-#app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # ============ Ingestão e manipulação de dados =========== 
 
@@ -70,7 +62,6 @@ app.layout = html.Div(children=[
     ])
 ])
 
-
 # ============ Callbacks =========== 
 @app.callback(
     [
@@ -85,8 +76,6 @@ app.layout = html.Div(children=[
         Input('main_variable', 'value')
     ]
 )
-
-# ====== Dataframe =======
 def render_graphs(cities, main_variable):
     operation = np.sum if main_variable == "gross income" else np.mean
 
@@ -112,12 +101,11 @@ def render_graphs(cities, main_variable):
     fig_income_date = px.bar(df_income_time, y=main_variable, x="Date")
 
     for fig in [fig_city, fig_payment, fig_gender, fig_product_income, fig_income_date]:
-        fig.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=200, template="minty")
+        fig.update_layout(margin=dict(l=0, r=0, t=20, b=20), height=200, template="plotly_dark")
 
     fig_product_income.update_layout(margin=dict(l=0, r=0, t=20, b=10), height=300)
 
     return fig_city, fig_payment, fig_gender, fig_income_date, fig_product_income
-
 
 # ============ Run server ===========
 if __name__ == "__main__":

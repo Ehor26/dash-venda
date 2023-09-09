@@ -8,14 +8,15 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
+import dash_bootstrap_templates as dbt
+
 
 from dash_bootstrap_templates import load_figure_template
 
-load_figure_template("minty")
+#load_figure_template("minty")
 
-app = dash.Dash(
-    __name__, external_stylesheets=[dbc.themes.MINTY]
-)
+app = dash.Dash(__name__, external_stylesheets=[dbt.themes.MINTY])
+#app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 
 # ============ Ingestão e manipulação de dados =========== 
 
